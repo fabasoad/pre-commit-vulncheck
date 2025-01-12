@@ -49,7 +49,7 @@ install() {
           | sed -E 's/.*"([^"]+)".*/\1/' \
           | sed 's/v//')"
       fi
-      fabasoad_log "debug" "Vulncheck is not found. Downloading ${version} version."
+      fabasoad_log "debug" "Vulncheck is not found. Downloading ${version} version..."
       download_vulncheck "${version}"
       fabasoad_log "debug" "Downloading completed"
     else
