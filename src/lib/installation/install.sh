@@ -49,7 +49,7 @@ install() {
           | grep '"tag_name":' \
           | sed -E 's/.*"([^"]+)".*/\1/' \
           | sed 's/v//')"
-        fabasoad_log "debug" "Vulncheck latest version is ${version}"
+        fabasoad_log "debug" "Latest version identified as ${version}"
       fi
       download_vulncheck "${version}"
       fabasoad_log "debug" "Downloading completed"

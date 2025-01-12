@@ -189,8 +189,8 @@ repos:
       - id: vulncheck-scan
         args:
           - --hook-args=--log-level debug
-          - --vulncheck-args=--fail-on low
-          - --vulncheck-args=--by-cve
+          - --vulncheck-args=--file
+          - --vulncheck-args=--file-name result.json
 ```
 
 Pass arguments altogether grouped by category:
@@ -203,7 +203,7 @@ repos:
       - id: vulncheck-scan
         args:
           - --hook-args=--log-level debug
-          - --vulncheck-args=--fail-on low --by-cve
+          - --vulncheck-args=--file --file-name result.json
 ```
 
 Set these parameters to have the minimal possible logs output:
@@ -216,5 +216,4 @@ repos:
       - id: vulncheck-scan
         args:
           - --hook-args=--log-level=error
-          - --vulncheck-args=--quiet
 ```
