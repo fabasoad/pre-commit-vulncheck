@@ -42,15 +42,14 @@ install() {
     vulncheck_path="${CONFIG_CACHE_APP_BIN_DIR}/vulncheck"
     mkdir -p "${CONFIG_CACHE_APP_BIN_DIR}"
     if [ ! -f "${vulncheck_path}" ]; then
-      fabasoad_log "debug" "Vulncheck is not found. Downloading ${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION} version."
       version="${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION}"
       if [ "${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION}" = "latest" ]; then
         version="$(curl -s "https://api.github.com/repos/vulncheck-oss/cli/releases/latest" \
           | grep '"tag_name":' \
           | sed -E 's/.*"([^"]+)".*/\1/' \
           | sed 's/v//')"
-        fabasoad_log "debug" "Latest version identified as ${version}"
       fi
+      fabasoad_log "debug" "Vulncheck is not found. Downloading ${version} version."
       download_vulncheck "${version}"
       fabasoad_log "debug" "Downloading completed"
     else
