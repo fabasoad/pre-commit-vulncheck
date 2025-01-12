@@ -1,7 +1,9 @@
 ---
 - id: vulncheck-scan
   name: Vulncheck Scan
-  description: Scans directory
+  description: |
+    This command will scan a directory for traces of packages via generating an
+    SBOM and then check for vulnerabilities.
   entry: src/main.sh "vulncheck-scan"
   language: script
   pass_filenames: false

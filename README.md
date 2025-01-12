@@ -11,7 +11,7 @@
 - [How it works?](#how-it-works)
 - [Prerequisites](#prerequisites)
 - [Hooks](#hooks)
-  - [vulncheck-dir](#vulncheck-dir)
+  - [vulncheck-scan](#vulncheck-scan)
 - [Customization](#customization)
   - [Description](#description)
   - [Parameters](#parameters)
@@ -25,9 +25,10 @@
 
 ## How it works?
 
-At first hook tries to use globally installed `vulncheck` tool. And if it doesn't
-exist then hook installs `vulncheck` into a `.fabasoad/pre-commit-vulncheck`
-temporary directory that will be removed after scanning is completed.
+At first hook tries to use globally installed [vulncheck](https://github.com/vulncheck-oss/cli)
+CLI. And if it doesn't exist then hook installs `vulncheck` into a
+`.fabasoad/pre-commit-vulncheck` temporary directory that will be removed after
+scanning is completed.
 
 ## Prerequisites
 
@@ -44,9 +45,9 @@ hook:
 > `<rev>` in the examples below, is the latest revision tag from [fabasoad/pre-commit-vulncheck](https://github.com/fabasoad/pre-commit-vulncheck/releases)
 > repository.
 
-### vulncheck-dir
+### vulncheck-scan
 
-This hook runs [vulncheck dir:.](https://github.com/anchore/vulncheck?tab=readme-ov-file#supported-sources)
+This hook runs [vulncheck scan .](https://github.com/vulncheck-oss/cli?tab=readme-ov-file#scan-a-repository-for-vulnerabilities)
 command.
 
 ```yaml
@@ -54,7 +55,7 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
 ```
 
 ## Customization
@@ -73,8 +74,8 @@ but not `--hook-args <arg>`. Please find [Examples](#examples) for more details.
 
 #### Vulncheck
 
-You can install `vulncheck` locally and run `vulncheck --help` to see all the
-available arguments:
+You can install `vulncheck` locally and run `vulncheck scan --help` to see all
+the available arguments:
 
 <!-- markdownlint-disable MD013 -->
 
@@ -186,11 +187,11 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
         args:
           - --hook-args=--log-level debug
-          - --vulncheck-args=--fail-on low
-          - --vulncheck-args=--by-cve
+          - --vulncheck-args=--file
+          - --vulncheck-args=--file-name result.json
 ```
 
 Pass arguments altogether grouped by category:
@@ -200,10 +201,10 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
         args:
           - --hook-args=--log-level debug
-          - --vulncheck-args=--fail-on low --by-cve
+          - --vulncheck-args=--file --file-name result.json
 ```
 
 Set these parameters to have the minimal possible logs output:
@@ -213,8 +214,7 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
         args:
           - --hook-args=--log-level=error
-          - --vulncheck-args=--quiet
 ```

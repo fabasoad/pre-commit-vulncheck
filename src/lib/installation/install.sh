@@ -12,14 +12,14 @@ download_vulncheck() {
     os=$([ "${os}" = "Linux" ] && echo "linux" || echo "windows")
     arch=$([ "${arch}" = "aarch64" ] && echo "arm64" || echo "amd64")
   fi
-  url="https://github.com/vulncheck-oss/cli/releases/download/v${version}/vulncheck_${version}_${os}_${arch}.${ext}"
+  filename="vulncheck_${version}_${os}_${arch}"
+  url="https://github.com/vulncheck-oss/cli/releases/download/v${version}/${filename}.${ext}"
   output_filename="vulncheck.${ext}"
-  curl -qL "${url}" -o "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}"
+  curl -qsL "${url}" -o "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}"
   if [ "${ext}" = "zip" ]; then
-    temp_dir=$(mktemp)
-    unzip "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}" -d "${temp_dir}"
-    mv "${temp_dir}/bin/vulncheck" "${CONFIG_CACHE_APP_BIN_DIR}"
-    rm -rf "${temp_dir}"
+    unzip -qq "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}" -d "${CONFIG_CACHE_APP_BIN_DIR}"
+    mv "${CONFIG_CACHE_APP_BIN_DIR}/${filename}/bin/vulncheck" "${CONFIG_CACHE_APP_BIN_DIR}"
+    rm -rf "${CONFIG_CACHE_APP_BIN_DIR}/${filename}"
   else
     tar -xzf "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}" -C "${CONFIG_CACHE_APP_BIN_DIR}" --strip-components 2
   fi
@@ -42,14 +42,14 @@ install() {
     vulncheck_path="${CONFIG_CACHE_APP_BIN_DIR}/vulncheck"
     mkdir -p "${CONFIG_CACHE_APP_BIN_DIR}"
     if [ ! -f "${vulncheck_path}" ]; then
-      fabasoad_log "debug" "Vulncheck is not found. Downloading ${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION} version:"
       version="${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION}"
       if [ "${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION}" = "latest" ]; then
-        version="$(curl -s https://api.github.com/repos/vulncheck-oss/cli/releases/latest \
+        version="$(curl -s "https://api.github.com/repos/vulncheck-oss/cli/releases/latest" \
           | grep '"tag_name":' \
           | sed -E 's/.*"([^"]+)".*/\1/' \
           | sed 's/v//')"
       fi
+      fabasoad_log "debug" "Vulncheck is not found. Downloading ${version} version..."
       download_vulncheck "${version}"
       fabasoad_log "debug" "Downloading completed"
     else
