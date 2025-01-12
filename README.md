@@ -25,9 +25,10 @@
 
 ## How it works?
 
-At first hook tries to use globally installed `vulncheck` tool. And if it doesn't
-exist then hook installs `vulncheck` into a `.fabasoad/pre-commit-vulncheck`
-temporary directory that will be removed after scanning is completed.
+At first hook tries to use globally installed [vulncheck](https://github.com/vulncheck-oss/cli)
+CLI. And if it doesn't exist then hook installs `vulncheck` into a
+`.fabasoad/pre-commit-vulncheck` temporary directory that will be removed after
+scanning is completed.
 
 ## Prerequisites
 
@@ -46,7 +47,7 @@ hook:
 
 ### vulncheck-scan
 
-This hook runs [vulncheck dir:.](https://github.com/anchore/vulncheck?tab=readme-ov-file#supported-sources)
+This hook runs [vulncheck scan .](https://github.com/vulncheck-oss/cli?tab=readme-ov-file#scan-a-repository-for-vulnerabilities)
 command.
 
 ```yaml
@@ -73,8 +74,8 @@ but not `--hook-args <arg>`. Please find [Examples](#examples) for more details.
 
 #### Vulncheck
 
-You can install `vulncheck` locally and run `vulncheck --help` to see all the
-available arguments:
+You can install `vulncheck` locally and run `vulncheck scan --help` to see all
+the available arguments:
 
 <!-- markdownlint-disable MD013 -->
 
