@@ -12,16 +12,14 @@ download_vulncheck() {
     os=$([ "${os}" = "Linux" ] && echo "linux" || echo "windows")
     arch=$([ "${arch}" = "aarch64" ] && echo "arm64" || echo "amd64")
   fi
-  url="https://github.com/vulncheck-oss/cli/releases/download/v${version}/vulncheck_${version}_${os}_${arch}.${ext}"
+  filename="vulncheck_${version}_${os}_${arch}"
+  url="https://github.com/vulncheck-oss/cli/releases/download/v${version}/${filename}.${ext}"
   output_filename="vulncheck.${ext}"
   curl -qsL "${url}" -o "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}"
   if [ "${ext}" = "zip" ]; then
-    temp_dir="${CONFIG_CACHE_APP_BIN_DIR}/temp_$(date +%s)"
-    mkdir -p "${temp_dir}"
-    unzip "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}" -d "${temp_dir}"
-    ls -la "${temp_dir}"
-    mv "${temp_dir}/bin/vulncheck" "${CONFIG_CACHE_APP_BIN_DIR}"
-    rm -rf "${temp_dir}"
+    unzip "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}" -d "${CONFIG_CACHE_APP_BIN_DIR}"
+    mv "${CONFIG_CACHE_APP_BIN_DIR}/${filename}/bin/vulncheck" "${CONFIG_CACHE_APP_BIN_DIR}"
+    rm -rf "${CONFIG_CACHE_APP_BIN_DIR}/${filename}"
   else
     tar -xzf "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}" -C "${CONFIG_CACHE_APP_BIN_DIR}" --strip-components 2
   fi
