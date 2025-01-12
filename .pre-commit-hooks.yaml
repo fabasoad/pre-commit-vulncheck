@@ -1,0 +1,8 @@
+---
+- id: vulncheck-scan
+  name: Vulncheck Scan
+  description: Scans directory
+  entry: src/main.sh "vulncheck-scan"
+  language: script
+  pass_filenames: false
+  verbose: true
