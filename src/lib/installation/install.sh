@@ -16,7 +16,8 @@ download_vulncheck() {
   output_filename="vulncheck.${ext}"
   curl -qsL "${url}" -o "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}"
   if [ "${ext}" = "zip" ]; then
-    temp_dir=$(mktemp)
+    temp_dir="${CONFIG_CACHE_APP_BIN_DIR}/temp_$(date +%s)"
+    mkdir -p "${temp_dir}"
     unzip "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}" -d "${temp_dir}"
     ls -la "${temp_dir}"
     mv "${temp_dir}/bin/vulncheck" "${CONFIG_CACHE_APP_BIN_DIR}"
