@@ -59,10 +59,10 @@ test_log_color_env_var() {
 
 main() {
   echo "Testing $(basename "$0")..."
-  test_log_color_param_precedence "vulncheck-dir" "true" "false" "true"
-  test_log_color_param_precedence "vulncheck-dir" "false" "true" "false"
-  test_log_color_env_var "vulncheck-dir" "true"
-  test_log_color_env_var "vulncheck-dir" "false"
+  test_log_color_param_precedence "vulncheck-scan" "true" "false" "true"
+  test_log_color_param_precedence "vulncheck-scan" "false" "true" "false"
+  test_log_color_env_var "vulncheck-scan" "true"
+  test_log_color_env_var "vulncheck-scan" "false"
   echo "[PASS] Total 4 tests passed\n"
 }
 

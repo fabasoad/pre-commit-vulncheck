@@ -59,10 +59,10 @@ test_log_level_env_var() {
 
 main() {
   echo "Testing $(basename "$0")..."
-  test_log_level_param_precedence "vulncheck-dir" "info" "debug" "false"
-  test_log_level_param_precedence "vulncheck-dir" "debug" "info" "true"
-  test_log_level_env_var "vulncheck-dir" "debug" "true"
-  test_log_level_env_var "vulncheck-dir" "info" "false"
+  test_log_level_param_precedence "vulncheck-scan" "info" "debug" "false"
+  test_log_level_param_precedence "vulncheck-scan" "debug" "info" "true"
+  test_log_level_env_var "vulncheck-scan" "debug" "true"
+  test_log_level_env_var "vulncheck-scan" "info" "false"
   echo "[PASS] Total 4 tests passed\n"
 }
 

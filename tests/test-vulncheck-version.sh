@@ -59,9 +59,9 @@ test_vulncheck_version_env_var() {
 
 main() {
   echo "Testing $(basename "$0")..."
-  test_vulncheck_version_param_precedence "vulncheck-dir" "0.79.2" "0.79.3" "0.79.2"
-  test_vulncheck_version_param_precedence "vulncheck-dir" "0.79.3" "0.79.2" "0.79.3"
-  test_vulncheck_version_env_var "vulncheck-dir" "0.79.2"
+  test_vulncheck_version_param_precedence "vulncheck-scan" "0.79.2" "0.79.3" "0.79.2"
+  test_vulncheck_version_param_precedence "vulncheck-scan" "0.79.3" "0.79.2" "0.79.3"
+  test_vulncheck_version_env_var "vulncheck-scan" "0.79.2"
   echo "[PASS] Total 3 tests passed\n"
 }
 

@@ -11,7 +11,7 @@
 - [How it works?](#how-it-works)
 - [Prerequisites](#prerequisites)
 - [Hooks](#hooks)
-  - [vulncheck-dir](#vulncheck-dir)
+  - [vulncheck-scan](#vulncheck-scan)
 - [Customization](#customization)
   - [Description](#description)
   - [Parameters](#parameters)
@@ -44,7 +44,7 @@ hook:
 > `<rev>` in the examples below, is the latest revision tag from [fabasoad/pre-commit-vulncheck](https://github.com/fabasoad/pre-commit-vulncheck/releases)
 > repository.
 
-### vulncheck-dir
+### vulncheck-scan
 
 This hook runs [vulncheck dir:.](https://github.com/anchore/vulncheck?tab=readme-ov-file#supported-sources)
 command.
@@ -54,7 +54,7 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
 ```
 
 ## Customization
@@ -186,7 +186,7 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
         args:
           - --hook-args=--log-level debug
           - --vulncheck-args=--fail-on low
@@ -200,7 +200,7 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
         args:
           - --hook-args=--log-level debug
           - --vulncheck-args=--fail-on low --by-cve
@@ -213,7 +213,7 @@ repos:
   - repo: https://github.com/fabasoad/pre-commit-vulncheck
     rev: <rev>
     hooks:
-      - id: vulncheck-dir
+      - id: vulncheck-scan
         args:
           - --hook-args=--log-level=error
           - --vulncheck-args=--quiet
