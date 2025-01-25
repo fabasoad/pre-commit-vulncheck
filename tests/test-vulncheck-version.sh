@@ -5,10 +5,10 @@ ROOT_DIR=$(dirname "${TESTS_DIR}")
 SRC_DIR="${ROOT_DIR}/src"
 
 test_vulncheck_version_param_precedence() {
-  command="$1"
-  vulncheck_version_cmd="$2"
-  vulncheck_version_env_var="$3"
-  version_expected="$4"
+  command="${1}"
+  vulncheck_version_cmd="${2}"
+  vulncheck_version_env_var="${3}"
+  version_expected="${4}"
 
   test_name="${FUNCNAME:-${0##*/}}: $@"
 
@@ -32,8 +32,8 @@ test_vulncheck_version_param_precedence() {
 }
 
 test_vulncheck_version_env_var() {
-  command="$1"
-  vulncheck_version_env_var="$2"
+  command="${1}"
+  vulncheck_version_env_var="${2}"
   version_expected="${vulncheck_version_env_var}"
 
   test_name="${FUNCNAME:-${0##*/}}: $@"
