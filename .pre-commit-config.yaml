@@ -7,7 +7,7 @@ repos:
     hooks:
       - id: build
         name: Build
-        entry: make build
+        entry: make install
         language: system
         pass_filenames: false
         verbose: true
