@@ -8,20 +8,23 @@
 
 ## Table of Contents
 
-- [How it works?](#how-it-works)
-- [Prerequisites](#prerequisites)
-- [Hooks](#hooks)
-  - [vulncheck-scan](#vulncheck-scan)
-- [Customization](#customization)
-  - [Description](#description)
-  - [Parameters](#parameters)
-    - [Vulncheck](#vulncheck)
-    - [pre-commit-vulncheck](#pre-commit-vulncheck)
-      - [Log level](#log-level)
-      - [Log color](#log-color)
-      - [Vulncheck version](#vulncheck-version)
-      - [Clean cache](#clean-cache)
-  - [Examples](#examples)
+- [Vulncheck pre-commit hooks](#vulncheck-pre-commit-hooks)
+  - [Table of Contents](#table-of-contents)
+  - [How it works?](#how-it-works)
+  - [Prerequisites](#prerequisites)
+  - [Hooks](#hooks)
+    - [vulncheck-scan](#vulncheck-scan)
+  - [Customization](#customization)
+    - [Description](#description)
+    - [Parameters](#parameters)
+      - [Vulncheck](#vulncheck)
+      - [pre-commit-vulncheck](#pre-commit-vulncheck)
+        - [Log level](#log-level)
+        - [Log color](#log-color)
+        - [Vulncheck version](#vulncheck-version)
+        - [Clean cache](#clean-cache)
+    - [Examples](#examples)
+  - [Contributions](#contributions)
 
 ## How it works?
 
@@ -32,11 +35,12 @@ scanning is completed.
 
 ## Prerequisites
 
-The following tools have to be available on a runner prior using this pre-commit
+The following tools have to be available on a machine prior using this pre-commit
 hook:
 
 - [bash >=4.0](https://www.gnu.org/software/bash/)
 - [curl](https://curl.se/)
+- [jq](https://jqlang.github.io/jq/)
 
 ## Hooks
 
@@ -218,3 +222,7 @@ repos:
         args:
           - --hook-args=--log-level=error
 ```
+
+## Contributions
+
+![Alt](https://repobeats.axiom.co/api/embed/08f52b6c223b8c32cb05bc73994753c431771cdb.svg "Repobeats analytics image")

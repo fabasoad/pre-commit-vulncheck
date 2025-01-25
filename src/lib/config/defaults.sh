@@ -3,6 +3,7 @@
 # System
 _PRE_COMMIT_VULNCHECK_CONSUMER_ROOT_DIR="$(pwd)"
 _PRE_COMMIT_VULNCHECK_APP_NAME="pre-commit-vulncheck"
+_UPSTREAM_FULL_REPO_NAME="vulncheck-oss/cli"
 
 # Logging
 CONFIG_LOG_LEVEL_ARG_NAME="--log-level"

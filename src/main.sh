@@ -13,8 +13,15 @@ _import_all() {
   done
 }
 
+# Validate that all needed dependencies are installed on the machine
+_validate_prerequisites() {
+  validate_tool_installed "jq"
+  validate_tool_installed "curl"
+}
+
 main() {
   _import_all
+  _validate_prerequisites
 
   cmd_vulncheck_scan="vulncheck-scan"
 
@@ -44,7 +51,7 @@ main() {
       vulncheck_scan "${all_args_map["vulncheck-args"]}"
       ;;
     *)
-      validate_enum "hook" "${cmd_actual}" "${cmd_vulncheck_scan}"
+      validate_enum "${cmd_actual}" "${cmd_vulncheck_scan}"
       ;;
   esac
 }

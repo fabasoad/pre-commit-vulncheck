@@ -13,7 +13,7 @@ download_vulncheck() {
     arch=$([ "${arch}" = "aarch64" ] && echo "arm64" || echo "amd64")
   fi
   filename="vulncheck_${version}_${os}_${arch}"
-  url="https://github.com/vulncheck-oss/cli/releases/download/v${version}/${filename}.${ext}"
+  url="https://github.com/${_UPSTREAM_FULL_REPO_NAME}/releases/download/v${version}/${filename}.${ext}"
   output_filename="vulncheck.${ext}"
   curl -qsL "${url}" -o "${CONFIG_CACHE_APP_BIN_DIR}/${output_filename}"
   if [ "${ext}" = "zip" ]; then
@@ -41,10 +41,12 @@ install() {
     fi
     vulncheck_path="${CONFIG_CACHE_APP_BIN_DIR}/vulncheck"
     mkdir -p "${CONFIG_CACHE_APP_BIN_DIR}"
-    if [ ! -f "${vulncheck_path}" ]; then
+    if [ -f "${vulncheck_path}" ]; then
+      fabasoad_log "debug" "Vulncheck is found at ${vulncheck_path}. Installation skipped"
+    else
       version="${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION}"
-      if [ "${PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION}" = "latest" ]; then
-        version="$(curl -s "https://api.github.com/repos/vulncheck-oss/cli/releases/latest" \
+      if [ "${version}" = "latest" ]; then
+        version="$(curl -s "https://api.github.com/repos/${_UPSTREAM_FULL_REPO_NAME}/releases/latest" \
           | grep '"tag_name":' \
           | sed -E 's/.*"([^"]+)".*/\1/' \
           | sed 's/v//')"
@@ -52,8 +54,6 @@ install() {
       fabasoad_log "debug" "Vulncheck is not found. Downloading ${version} version..."
       download_vulncheck "${version}"
       fabasoad_log "debug" "Downloading completed"
-    else
-      fabasoad_log "debug" "Vulncheck is found at ${vulncheck_path}. Installation skipped"
     fi
   fi
   echo "${vulncheck_path}"
