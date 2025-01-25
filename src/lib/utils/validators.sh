@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 _run_validator() {
-  func_name="$1"
+  func_name="${1}"
   shift
 
   set +e

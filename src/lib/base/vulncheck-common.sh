@@ -3,7 +3,7 @@ set -u
 
 vulncheck_common() {
   # Removing trailing space (sed command) is needed here in case there were no
-  # --vulncheck-args passed, so that $1 in this case is "scan . "
+  # --vulncheck-args passed, so that ${1} in this case is "scan . "
   vulncheck_args="$(echo "${1}" | sed 's/ *$//')"
 
   vulncheck_path=$(install)
