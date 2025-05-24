@@ -166,7 +166,7 @@ is not globally installed, otherwise globally installed `vulncheck` takes preced
 
 - Parameter name: `--vulncheck-version`
 - Environment variable: `PRE_COMMIT_VULNCHECK_VULNCHECK_VERSION`
-- Possible values: Vulncheck version that you can find [here](https://github.com/vulncheck-oss/cli/releases)
+- Possible values: [Vulncheck version](https://github.com/vulncheck-oss/cli/releases)
 - Default: `latest`
 
 ##### Clean cache
