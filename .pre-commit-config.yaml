@@ -8,14 +8,14 @@ repos:
       - id: build
         name: Build
         entry: make install
-        language: system
+        language: unsupported
         pass_filenames: false
         verbose: true
         stages: ["pre-push"]
       - id: test
         name: Functional tests
         entry: make test
-        language: system
+        language: unsupported
         pass_filenames: false
         verbose: true
         stages: ["pre-push"]
